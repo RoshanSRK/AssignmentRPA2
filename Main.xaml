@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1512,2856" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1512,3182.4" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ue="clr-namespace:UiPath.Excel;assembly=UiPath.Excel.Activities" xmlns:ueab="clr-namespace:UiPath.Excel.Activities.Business;assembly=UiPath.Excel.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="80">
+    <scg:List x:TypeArguments="x:String" Capacity="50">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -48,10 +48,13 @@
       <x:String>UiPath.Mail.Activities.Business</x:String>
       <x:String>UiPath.Mail.Outlook.Activities</x:String>
       <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.Database</x:String>
+      <x:String>UiPath.Database.Activities</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="27">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="29">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -79,33 +82,40 @@
       <AssemblyReference>UiPath.Platform</AssemblyReference>
       <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+      <AssemblyReference>UiPath.Database</AssemblyReference>
+      <AssemblyReference>UiPath.Database.Activities</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1522.4,2791.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap:VirtualizedContainerService.HintSize="1522.4,3117.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="ui:DatabaseConnection" Name="db_Connection" />
+      <Variable x:TypeArguments="x:String" Name="action" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="1480.8,2698.4" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" WorkbookPath="Rules.xlsx">
+    <ui:DatabaseConnect DisplayName="Connect" sap:VirtualizedContainerService.HintSize="1480.8,60" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="System.Data.SqlClient" ConnectionString="Data Source=DESKTOP-52HB0H7\SQLEXPRESS;Initial Catalog=stockHistory;Integrated Security=True" DatabaseConnection="[db_Connection]" />
+    <ueab:ExcelApplicationCard Password="{x:Null}" ReadFormatting="{x:Null}" DisplayName="Use Excel File" sap:VirtualizedContainerService.HintSize="1480.8,2924.8" sap2010:WorkflowViewState.IdRef="ExcelApplicationCard_1" WorkbookPath="Rules.xlsx">
       <ueab:ExcelApplicationCard.Body>
         <ActivityAction x:TypeArguments="ue:IWorkbookQuickHandle">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="ue:IWorkbookQuickHandle" Name="Excel" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1447.2,2428.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1447.2,2655.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: New Tab" sap:VirtualizedContainerService.HintSize="1405.6,2336" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="686ed0a0-db03-4f53-a633-e6e290c58935" Version="V1">
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: New Tab" sap:VirtualizedContainerService.HintSize="1405.6,2562.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" ScopeGuid="686ed0a0-db03-4f53-a633-e6e290c58935" Version="V1">
               <uix:NApplicationCard.Body>
                 <ActivityAction x:TypeArguments="x:Object">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1372,2119.2" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1372,2345.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:String" Name="stockPrice" />
                     </Sequence.Variables>
@@ -114,7 +124,7 @@
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ueab:ExcelForEachRowX DisplayName="For Each Excel Row" EmptyRowBehavior="Stop" HasHeaders="True" sap:VirtualizedContainerService.HintSize="1330.4,2025.6" sap2010:WorkflowViewState.IdRef="ExcelForEachRowX_2" Range="[Excel.Sheet(&quot;Sheet1&quot;)]" SaveAfterEachRow="False">
+                    <ueab:ExcelForEachRowX DisplayName="For Each Excel Row" EmptyRowBehavior="Stop" HasHeaders="True" sap:VirtualizedContainerService.HintSize="1330.4,2252" sap2010:WorkflowViewState.IdRef="ExcelForEachRowX_2" Range="[Excel.Sheet(&quot;Sheet1&quot;)]" SaveAfterEachRow="False">
                       <ueab:ExcelForEachRowX.Body>
                         <ActivityAction x:TypeArguments="ue:CurrentRowQuickHandle, x:Int32">
                           <ActivityAction.Argument1>
@@ -123,7 +133,7 @@
                           <ActivityAction.Argument2>
                             <DelegateInArgument x:TypeArguments="x:Int32" Name="CurrentIndex" />
                           </ActivityAction.Argument2>
-                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1296.8,1841.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="1296.8,2068" sap2010:WorkflowViewState.IdRef="Sequence_5">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="ue:ExcelValue" Name="expectedStockPrice" />
                               <Variable x:TypeArguments="ue:ExcelValue" Name="currentStockName" />
@@ -133,7 +143,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Assign sap:VirtualizedContainerService.HintSize="1255.2,64" sap2010:WorkflowViewState.IdRef="Assign_3">
+                            <Assign sap:VirtualizedContainerService.HintSize="1255.2,60" sap2010:WorkflowViewState.IdRef="Assign_3">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="ue:ExcelValue">[currentStockName]</OutArgument>
                               </Assign.To>
@@ -175,14 +185,22 @@
                                 <OutArgument x:TypeArguments="x:String">[stockPrice]</OutArgument>
                               </uix:NGetText.Text>
                             </uix:NGetText>
-                            <If Condition="[stockPrice = expectedStockPrice]" sap:VirtualizedContainerService.HintSize="1255.2,850.4" sap2010:WorkflowViewState.IdRef="If_2">
+                            <If Condition="[stockPrice = expectedStockPrice]" sap:VirtualizedContainerService.HintSize="1255.2,951.2" sap2010:WorkflowViewState.IdRef="If_2">
                               <If.Then>
-                                <Sequence sap:VirtualizedContainerService.HintSize="375.2,438.4" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                <Sequence sap:VirtualizedContainerService.HintSize="375.2,537.6" sap2010:WorkflowViewState.IdRef="Sequence_11">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
+                                  <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[action]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">["add to watchlist"]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
                                   <uix:NClick ClickType="Single" DisplayName="Click 'ADD TO WATCHLIST'" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_6" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="686ed0a0-db03-4f53-a633-e6e290c58935" Version="V1">
                                     <uix:NClick.Target>
                                       <uix:TargetAnchorable BrowserURL="https://www.rpachallenge.com/assets/rpaStockMarket/index.html#" DesignTimeRectangle="834, 353, 191, 40" ElementType="Text" FriendlyName="'ADD TO WATCHLIST'" FullSelectorArgument="&lt;webctrl aaname='ADD TO WATCHLIST' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='ADD TO WATCHLIST' tag='A' type='' check:text='ADD TO WATCHLIST' /&gt;" Guid="7363e9f1-2a52-4e5e-9c2b-66b597bf22a8" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAMMAAAAsCAYAAADYbQz9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAQ9SURBVHhe7VfbUSMxELwoCOnSIg0CIAm+SYBffomAKv4o8J61Umv1mIfWhc1tqbuqC7zSSjM905L9ZyEIYgXNQBAJ2Qyff+9IckoCNAM5PQGagZyeAM1ATk+AZiCnJ0AzkNMToBnI6QnQDOT0BGgGcnoCNAM5PQGagZyeAM1ATk+AZiCnJ3ATM3y/pU0+npcvYfzz7+NySlM6vNwL8++Wr5f3NKHF6/ItzK/49JrmWnhfTg/le1KM7RyJ98vp4zxVyR3anJ76sbzn22P9/OF5fSegfE/XpESrj5BXFasSQ2Lcs9ZBelZTW7OPBfldltsYgRuYISZ4egsNqAmkiJOL3iepCZ6Np5hIole8XIhmzfxcaRQwxiStn4wSIK2RTNsaZd334zW+a+wd99UbxMwrG+JGZkCtq33CPHkdL7c9BK5vhrWgIaEkgNikluBprDlZLcFRZPm07WkWD0VybihzL9xE7RrFCS/dHHJcyUBnreK43hBmwzh5bbRqI8do6rmyX9N/p+YhzbAGvRba+rowInjdcLZ4soE0Wmv5oo/speSHg+JN2l/RKzXxqoVyc4BW7OPNNFKbOna/sfs19zb33vkWgSubISWdTh9dJFtw6Qr1BI9iWQXZeHFciX5h8HWonrO+F5pdbOpaOzDGinXs+PS4xvKKtOdK2nm1kdaM79TPLB7PDG2R1avZK44mni64X5CN6lzBhBJHjNfvsX3dEfMXDdLfFlZTqGPDX5ECb2OG7cCI0G478HBm6ANOInRJ2ILn8aIJPMHjuC9qoLrWYNP4xT+zXSt9RnytVnHNRichHuQpxfijZjDxE2aIzPkkaPU7mBn6Bg6MSbRJDpqhGPcE9wuyUZ2LplHjiow5eXs1euD3QnqnjqG8NfD+1iiVdoix0TnwR82gaCBp52vv1fvMdDMGSIY4lhmQTCs4nldCOOKoJ6Iu+B6x9LUGiqb8HpBYxrT+XzZwmaPYrNo+eN7Hr2swkhf4S2YIvMToFxC4mhlisBbKREYEr08IW/C0niCiRH2tkUbf0Vj5d4B08qdnIebm1liJxrDQHDx6w4zkBf6iGUpNmrEDmcFOFkbZmtuan8YaQSzB45h8vUo0i5cbWBg70y98SeQpr4kCn8LfHflqJ6jZMNrN3dGupRSXr4m95kZ93mHMEMUwmhHFy0kqSefTsE9aExxG84u80Steb976+fheOJEDhP3QoAHVmkkf4YQEYyz1ml7DqPGvceC9W5ghfq71hVbyOl5uewhcwQwjV3A7J4kjwD6RBRgNo9Ev3pllo2bsL0aOW4xz06HKe+QUF+YMNYyUVxXbpWaQgHnSmkIPuOb/781AksciQDOQ0xOgGcjpCdAM5PQEaAZyegI0Azk9AZqBnJ4AzUBOT4BmIKcnQDOQ0xOgGcjpCdAM5PQEaAZyegI0Azk9AZqBnJ5ANgNBzI1l+Qc6yGo8X9aLSAAAAABJRU5ErkJggg==" InformativeScreenshot="9cdb29a00ca94c83e0e7c95d147cfef2.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='RPA Stock Market' /&gt;" SearchSteps="FuzzySelector, Image" />
@@ -196,20 +214,28 @@
                                 </Sequence>
                               </If.Then>
                               <If.Else>
-                                <Sequence sap:VirtualizedContainerService.HintSize="836,691.2" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                <Sequence sap:VirtualizedContainerService.HintSize="836,792" sap2010:WorkflowViewState.IdRef="Sequence_10">
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <If Condition="[stockPrice &lt; expectedStockPrice]" sap:VirtualizedContainerService.HintSize="794.4,597.6" sap2010:WorkflowViewState.IdRef="If_1">
+                                  <If Condition="[stockPrice &lt; expectedStockPrice]" sap:VirtualizedContainerService.HintSize="794.4,697.6" sap2010:WorkflowViewState.IdRef="If_1">
                                     <If.Then>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="375.2,438.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                                      <Sequence sap:VirtualizedContainerService.HintSize="375.2,538.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
+                                        <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:String">[action]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:String">["buy"]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
                                         <uix:NClick ClickType="Single" DisplayName="Click 'Buy'" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_4" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="686ed0a0-db03-4f53-a633-e6e290c58935" Version="V1">
                                           <uix:NClick.Target>
                                             <uix:TargetAnchorable BrowserURL="https://www.rpachallenge.com/assets/rpaStockMarket/index.html" DesignTimeRectangle="659, 385, 68, 40" ElementType="Text" FriendlyName="'Buy'" FullSelectorArgument="&lt;webctrl aaname='Buy' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Buy' tag='A' type='' check:text='Buy' /&gt;" Guid="b1f05867-c09f-4054-879e-dea094e43f16" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEgAAAAsCAYAAADGiP4LAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAGGSURBVGhD7ZbBjYMwFAW3ipREW2kjBaSJnGkg11xTQaTcUII3XvOQwf+xSNgEpDfSXCyDlVnby48TkyjQP/SBmuogI4ECEYECEYECEYECEYECEYECEYECEYECEYECEYECEYECEUGxQK/ro3vziOvRnL81QeFAD9eeovHLLSy2g0hg3UDV0bVPv9rNvaO5WxSsHOjg3ne/mgJN76Bn7V7R3L9oo7Fk7sTxLBEdrBoojDnXXoZzZwUicZvq7Fr/0vs5GlsuKBzIIv1LzwtEdmW3s8bRlwq+dEkPx+cGak61f3hwzOxnlwtWv6StIzE7UB+424VGsFyCLwRKf/j8QB+jI8XXWC7Yzg5K7qZuXhIOz9d2wEyC1QOFGKPx5F94F8FjBAjvCOS+nCEoHMjC/l4Zzg8B7aP3EXdP5m+fWFAsUFnTY5pbsM9Ahb59YsEuA9mXel7BDgOVP15esNM7qLxAgYhAgYhAgYhAgYhAgYhAgYhAgYhAgYhAgYhAgYigDyRsFGgS534BIXqr7tv6bOoAAAAASUVORK5CYII=" InformativeScreenshot="462c9c0008748e63f282898b111b7231.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='RPA Stock Market' /&gt;" SearchSteps="FuzzySelector, Image" />
@@ -223,12 +249,20 @@
                                       </Sequence>
                                     </If.Then>
                                     <If.Else>
-                                      <Sequence sap:VirtualizedContainerService.HintSize="375.2,438.4" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                                      <Sequence sap:VirtualizedContainerService.HintSize="375.2,538.4" sap2010:WorkflowViewState.IdRef="Sequence_8">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
+                                        <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:String">[action]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:String">["sell"]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
                                         <uix:NClick ClickType="Single" DisplayName="Click 'Sell'" sap:VirtualizedContainerService.HintSize="333.6,157.6" sap2010:WorkflowViewState.IdRef="NClick_5" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="686ed0a0-db03-4f53-a633-e6e290c58935" Version="V1">
                                           <uix:NClick.Target>
                                             <uix:TargetAnchorable BrowserURL="https://www.rpachallenge.com/assets/rpaStockMarket/index.html" DesignTimeRectangle="749, 385, 66, 40" ElementType="Text" FriendlyName="'Sell'" FullSelectorArgument="&lt;webctrl aaname='Sell' tag='A' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='Sell' tag='A' type='' check:text='Sell' /&gt;" Guid="3946e72c-5bf2-4233-b8c6-2b3a4f962ad5" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAEYAAAAsCAYAAADYQc64AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFLSURBVGhD7ZbLDcIwEAWpgpJoizZSAE1wpgGuuVIBEjcEMbG8z7IfjvhLsLyR5mJClB05n1kQTRRmghzmuJjLUaAwJFAYEigMCRSGBApDAoUhgcKQQGFIoDAkUBgS/EaYbpMucrvMa6ftflzYh6GjY18UfDjMKgx2fjCsW8fd0FUYDLNbFesx1BPDeArz1gv3FOa8i2ftw7nx28P62zEj1a3UNh8LDptwKo9x9YxZLMNwsJOPTD10084qB7T/lXF8hUnybqgC2cBX0dZ9ve4xTNaGjWDg6eHsNY8QrsNEMaDdJrybrvibMPT8uHs4/2HsFsGbip8lU/oJkwLUA+MtVQ7TWovSF7KvHWO7o4S/T8w0ZAkN7P9W+n6BwpBAYUigMCRQGBIoDAkUhgQKQwKFIYHCkEBhSKAwJFAYEigMCRSGBDmMqFGYJiFcAETmy6ZB39XBAAAAAElFTkSuQmCC" InformativeScreenshot="dbd78096beb3f0adf484ef69850db26c.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='RPA Stock Market' /&gt;" SearchSteps="FuzzySelector, Image" />
@@ -253,6 +287,22 @@
                                 <InArgument x:TypeArguments="ue:ExcelValue">[stockPrice]</InArgument>
                               </Assign.Value>
                             </Assign>
+                            <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query" ExistingDbConnection="[db_Connection]" sap:VirtualizedContainerService.HintSize="1255.2,89.6" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_1" Sql="INSERT INTO stockTable VALUES(@currentStockName, @stockPrice, @date, @action)">
+                              <ui:ExecuteNonQuery.Parameters>
+                                <InArgument x:TypeArguments="x:String" x:Key="currentStockName">
+                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="currentStockName" />
+                                </InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="stockPrice">
+                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="stockPrice" />
+                                </InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="date">
+                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Datetime. Now. ToString()" />
+                                </InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="action">
+                                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="action" />
+                                </InArgument>
+                              </ui:ExecuteNonQuery.Parameters>
+                            </ui:ExecuteNonQuery>
                           </Sequence>
                         </ActivityAction>
                       </ueab:ExcelForEachRowX.Body>
